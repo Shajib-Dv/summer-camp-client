@@ -1,15 +1,17 @@
 /** @format */
 
-import Home from "../Pages/Home/Home";
+import { Outlet } from "react-router-dom";
 import Navbar from "../Pages/Navbar/Navbar";
+import Footer from "../components/Footer";
 
 const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-20">
-        <Home />
+      <div className="mt-20 min-h-[calc(100vh-200px)]">
+        <Outlet />
       </div>
+      <Footer />
     </>
   );
 };
