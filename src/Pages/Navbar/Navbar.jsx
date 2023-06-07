@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import { FaTimes, FaBars } from "react-icons/fa";
 import BrandLogo from "./BrandLogo";
-import AdminListItem from "./AdminListItem";
+import useAuth from "../../hooks/useAuth";
+import ActiveLink from "../../components/ActiveLink";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
-  const user = { name: "admin", email: "ad@b.com" };
+  const { user } = useAuth();
 
   //sign in button
   const SignInBtn = () => {
@@ -54,9 +55,11 @@ const Navbar = () => {
               }`}
             >
               <ul className="md:items-center md:justify-center space-y-4 flex flex-col md:flex-row md:space-x-6 md:space-y-0 text-black font-semibold">
-                {/* Link goes here */}
-                <Link to="/">Home</Link>
-                <AdminListItem />
+                {/*TODO: Link goes here */}
+                <ActiveLink to="/">Home</ActiveLink>
+                <ActiveLink to="/instructors">Instructors</ActiveLink>
+                <ActiveLink to="/classes">Classes</ActiveLink>
+                {user && <ActiveLink to="/dashboard">Dashboard</ActiveLink>}
               </ul>
 
               <div className="mt-3 space-y-2 md:hidden">
@@ -65,14 +68,8 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden space-x-2 md:inline-flex items-center">
-            {user ? (
-              <>
-                <UserProfile />
-                <SignOutBtn />
-              </>
-            ) : (
-              <SignInBtn />
-            )}
+            <UserProfile />
+            {user ? <SignOutBtn /> : <SignInBtn />}
           </div>
         </div>
       </nav>

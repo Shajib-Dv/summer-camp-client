@@ -1,7 +1,10 @@
 /** @format */
 
+import useAuth from "../../hooks/useAuth";
+import logo from "/user.png";
+
 const UserProfile = () => {
-  const user = { name: "Abul", email: "ad@b.com" };
+  const { user } = useAuth();
   return (
     <>
       <div
@@ -9,13 +12,7 @@ const UserProfile = () => {
         className="avatar placeholder"
       >
         <div className="w-16 mask mask-decagon">
-          {user?.photoURL ? (
-            <img src={user?.photoURL} />
-          ) : (
-            <div className="text-3xl text-black font-bold rounded-full w-full h-full flex justify-center items-center bg-[#e8dc3eb3]">
-              {user?.email.slice(0, 1)}
-            </div>
-          )}
+          <img src={user?.photoURL ? user?.photoURL : logo} />
         </div>
       </div>
     </>
