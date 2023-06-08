@@ -20,7 +20,7 @@ const SignIn = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">Email*</span>
                 </label>
                 <input
                   type="email"
@@ -31,7 +31,7 @@ const SignIn = () => {
               </div>
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">Password*</span>
                 </label>
                 <input
                   type="password"
@@ -46,7 +46,9 @@ const SignIn = () => {
                 </label>
               </div>
               <div className="form-control w-full">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn hover:bg-[#8c9333a1] bg-[#8C9333]">
+                  Log in
+                </button>
               </div>
             </form>
             <p className="pb-4 text-center">

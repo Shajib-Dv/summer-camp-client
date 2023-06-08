@@ -9,7 +9,7 @@ const SocialLogIn = ({ children }) => {
         OR
         <hr className="border-black border w-full" />
       </div>
-      <div className="btn gap-4 md:w-1/2 mx-auto mb-4">
+      <div className="btn gap-4 md:w-1/2 mx-auto mb-4 hover:bg-[#8c9333a1]">
         <img src={googleLogo} className="w-12" />
         <p className="text-sm text-black capitalize">{children} with Google</p>
       </div>
