@@ -10,6 +10,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -44,6 +45,14 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  //update profile
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
   // user track
 
   useEffect(() => {
@@ -52,7 +61,9 @@ const AuthProvider = ({ children }) => {
       setLoader(false);
     });
 
-    return () => unSubscribe();
+    return () => {
+      return unSubscribe();
+    };
   }, []);
 
   const authInfo = {
@@ -61,6 +72,7 @@ const AuthProvider = ({ children }) => {
     googleSignIn,
     userSignIn,
     logOut,
+    updateUserProfile,
     loader,
   };
   return (

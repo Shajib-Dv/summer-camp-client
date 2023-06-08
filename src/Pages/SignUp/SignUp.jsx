@@ -4,21 +4,71 @@ import { useForm } from "react-hook-form";
 import Lottie from "lottie-react";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import signUpLottie from "../../../public/signup.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogIn from "../Shared/SocialLogIn/SocialLogIn";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const [axiosSecure] = useAxiosSecure();
+  const { userSignUp, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
   const [showFirstPassword, setShowFirstPassword] = useState(false);
   const [showSecondPassword, setShowSecondPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
   const watchPassword = watch("firstPassword", "");
+  const onSubmit = (data) => {
+    const {
+      name,
+      email,
+      firstPassword: password,
+      photo,
+      gender,
+      phone,
+      address,
+    } = data;
+    userSignUp(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser?.email);
+
+        updateUserProfile(name, photo).then(async () => {
+          const saveUser = {
+            name,
+            email,
+            password,
+            photo,
+            gender,
+            phone,
+            address,
+          };
+          const res = await axiosSecure.post("/users", saveUser);
+          if (res.data.insertedId) {
+            reset();
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "User created successfully.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          }
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="hero py-10 bg-[#94cf4268] min-h-screen">

@@ -7,10 +7,23 @@ import { FaTimes, FaBars } from "react-icons/fa";
 import BrandLogo from "./BrandLogo";
 import useAuth from "../../hooks/useAuth";
 import ActiveLink from "../../components/ActiveLink";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+
+  const handleSignOut = () => {
+    logOut().then(() => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Successfully log out !",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+  };
 
   //sign in button
   const SignInBtn = () => {
@@ -23,7 +36,11 @@ const Navbar = () => {
 
   //sign Out button
   const SignOutBtn = () => {
-    return <button className="primary-btn font-semibold">Sign out</button>;
+    return (
+      <button onClick={handleSignOut} className="primary-btn font-semibold">
+        Sign out
+      </button>
+    );
   };
 
   return (
