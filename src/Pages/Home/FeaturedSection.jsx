@@ -8,7 +8,7 @@ const FeaturedSection = () => {
       <div className="w-full h-80 md:h-96 mx-auto object-cover overflow-hidden relative">
         <Lottie animationData={subscribeBg} loop={true} />
         <div className="absolute top-0 flex flex-col justify-center items-center h-full w-full">
-          <div className="w-4/5 h-4/5 bg-black bg-opacity-50 rounded-md flex flex-col justify-center items-center space-y-6">
+          <div className="md:w-4/5 h-4/5 bg-black bg-opacity-50 rounded-md flex flex-col justify-center items-center space-y-6">
             <h2 className="text-2xl font-bold text-white px-4">
               Subscribe Our News Letter to Get Regular Updates
             </h2>

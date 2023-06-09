@@ -8,9 +8,12 @@ import BrandLogo from "./BrandLogo";
 import useAuth from "../../hooks/useAuth";
 import ActiveLink from "../../components/ActiveLink";
 import Swal from "sweetalert2";
+import PostCamp from "./PostCamp";
+import BecomeInstructor from "../Shared/SocialLogIn/Modal/BecomeInstructor";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const { user, logOut } = useAuth();
 
   const handleSignOut = () => {
@@ -18,7 +21,7 @@ const Navbar = () => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Successfully log out !",
+        title: "Successfully Sign out !",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -41,6 +44,20 @@ const Navbar = () => {
         Sign out
       </button>
     );
+  };
+
+  //modal
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleBecomeInstructor = () => {
+    // TODO: set role in db
+    alert("Becoming an instructor...");
   };
 
   return (
@@ -71,12 +88,20 @@ const Navbar = () => {
                 navbar ? "block" : "hidden"
               }`}
             >
-              <ul className="md:items-center md:justify-center space-y-4 flex flex-col md:flex-row md:space-x-6 md:space-y-0 text-black font-semibold">
+              <ul
+                onClick={() => setNavbar(!navbar)}
+                className="md:items-center md:justify-center space-y-4 flex flex-col md:flex-row md:space-x-6 md:space-y-0 text-black font-semibold"
+              >
                 {/*TODO: Link goes here */}
                 <ActiveLink to="/">Home</ActiveLink>
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>
-                {user && <ActiveLink to="/dashboard">Dashboard</ActiveLink>}
+                {user && (
+                  <>
+                    <ActiveLink to="/dashboard">Dashboard</ActiveLink>
+                    <PostCamp onClick={openModal} />
+                  </>
+                )}
               </ul>
 
               <div className="mt-3 space-y-2 md:hidden">
@@ -90,6 +115,13 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <BecomeInstructor
+        isOpen={modalOpen}
+        onClose={closeModal}
+        onBecomeInstructor={handleBecomeInstructor}
+        title={"Do you want to post your camp!"}
+        subTitle={" Please click Become an Instructor to post your course."}
+      />
     </>
   );
 };

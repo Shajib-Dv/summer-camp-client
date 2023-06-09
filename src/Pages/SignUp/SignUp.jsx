@@ -122,7 +122,7 @@ const SignUp = () => {
                     {...register("firstPassword", {
                       required: "Password is required",
                       pattern: {
-                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                        value: /^(?=.*[A-Z])(?=.*[\W_])(?=.*\d).{6,}$/,
                         message: "use number and letter",
                       },
                     })}
@@ -149,7 +149,7 @@ const SignUp = () => {
                     placeholder="****"
                     className="input input-bordered"
                     {...register("secondPassword", {
-                      required: true,
+                      required: "Confirm password is required",
                       validate: (value) =>
                         value === watchPassword || "Passwords do not match",
                     })}

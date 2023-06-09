@@ -4,10 +4,34 @@ import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import signInLottie from "../../../public/login.json";
 import SocialLogIn from "../Shared/SocialLogIn/SocialLogIn";
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import Swal from "sweetalert2";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 
 const SignIn = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { userSignIn } = useAuth();
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    setError("");
+    const { email, password } = data;
+    userSignIn(email, password)
+      .then(() => {
+        reset();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Successfully Sign in.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => setError(err.message));
+  };
+
   return (
     <>
       <div className="hero min-h-screen py-10 bg-[#94cf4268]">
@@ -29,20 +53,27 @@ const SignIn = () => {
                   {...register("email", { required: true })}
                 />
               </div>
-              <div className="form-control w-full">
+              <div className="form-control w-full relative">
                 <label className="label">
                   <span className="label-text">Password*</span>
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "name" : "password"}
                   placeholder="****"
                   className="input input-bordered"
                   {...register("password", { required: true })}
                 />
-                <label className="label">
+                <div
+                  className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                </div>
+                <label className="label flex justify-between items-center">
                   <p className="label-text-alt link link-hover">
                     Forgot password?
                   </p>
+                  {error && <p className="text-red-500">{error}</p>}
                 </label>
               </div>
               <div className="form-control w-full">
