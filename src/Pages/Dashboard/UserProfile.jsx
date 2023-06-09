@@ -14,6 +14,7 @@ const UserProfile = () => {
       <h1 className="text-xl text-center font-bold">
         Welcome <span className="text-[#8C9333]">{user?.displayName}</span>
       </h1>
+      <p className="text-secondary text-center">{user?.email}</p>
     </>
   );
 };

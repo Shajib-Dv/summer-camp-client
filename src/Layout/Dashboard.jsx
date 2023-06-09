@@ -2,6 +2,7 @@
 
 import { Outlet } from "react-router-dom";
 import UserProfile from "../Pages/Dashboard/UserProfile";
+import InstructorList from "../Pages/Dashboard/Isntructor/InstructorList";
 
 const Dashboard = () => {
   return (
@@ -21,6 +22,9 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <div className="menu p-4 w-80 h-full text-black bg-[#ffffff] md:bg-transparent">
             <UserProfile />
+            <div className="space-y-4 flex flex-col font-bold mt-6 text-xl">
+              <InstructorList />
+            </div>
             {/* TODO: insert link here */}
           </div>
         </div>
