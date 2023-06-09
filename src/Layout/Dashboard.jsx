@@ -17,7 +17,7 @@ const Dashboard = () => {
             Open drawer
           </label>
         </div>
-        <div className="drawer-side border-r border-purple-500 md:pt-10  mt-24 md:m-0 text-black">
+        <div className="drawer-side  border-r-2 border-[#8C9333] md:pt-10  mt-24 md:m-0 text-black">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <div className="menu p-4 w-80 h-full text-black bg-[#ffffff] md:bg-transparent">
             <UserProfile />

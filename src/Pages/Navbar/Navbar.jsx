@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import { FaTimes, FaBars } from "react-icons/fa";
 import BrandLogo from "./BrandLogo";
@@ -10,11 +10,16 @@ import ActiveLink from "../../components/ActiveLink";
 import Swal from "sweetalert2";
 import PostCamp from "./PostCamp";
 import BecomeInstructor from "../Shared/SocialLogIn/Modal/BecomeInstructor";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useInstructor from "../../hooks/useInstructor";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [axiosSecure] = useAxiosSecure();
+  const navigate = useNavigate();
   const { user, logOut } = useAuth();
+  const [instructor] = useInstructor();
 
   const handleSignOut = () => {
     logOut().then(() => {
@@ -55,9 +60,25 @@ const Navbar = () => {
     setModalOpen(false);
   };
 
-  const handleBecomeInstructor = () => {
-    // TODO: set role in db
-    alert("Becoming an instructor...");
+  const handleBecomeInstructor = async () => {
+    const saveInstructor = {
+      name: user?.displayName,
+      email: user?.email,
+      date: new Date(),
+    };
+    const res = await axiosSecure.post("/instructors", saveInstructor);
+    if (res.data.insertedId) {
+      console.log(res.data);
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${user?.displayName} you will be notified soon when the admin approve you as an instructor.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    }
   };
 
   return (
@@ -96,12 +117,8 @@ const Navbar = () => {
                 <ActiveLink to="/">Home</ActiveLink>
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>
-                {user && (
-                  <>
-                    <ActiveLink to="/dashboard">Dashboard</ActiveLink>
-                    <PostCamp onClick={openModal} />
-                  </>
-                )}
+                {user && <ActiveLink to="/dashboard">Dashboard</ActiveLink>}
+                {!instructor.email && <PostCamp onClick={openModal} />}
               </ul>
 
               <div className="mt-3 space-y-2 md:hidden">
