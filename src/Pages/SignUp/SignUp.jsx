@@ -52,8 +52,9 @@ const SignUp = () => {
             phone,
             address,
           };
-          const res = await axiosSecure.post("/users", saveUser);
-          if (res.data.insertedId) {
+          const res = await axiosSecure.put("/users", saveUser);
+
+          if (res.data.upsertedId) {
             reset();
             Swal.fire({
               position: "center",

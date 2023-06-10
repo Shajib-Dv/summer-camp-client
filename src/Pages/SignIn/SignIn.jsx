@@ -1,6 +1,6 @@
 /** @format */
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import signInLottie from "../../../public/login.json";
 import SocialLogIn from "../Shared/SocialLogIn/SocialLogIn";
@@ -12,6 +12,7 @@ import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 const SignIn = () => {
   const { userSignIn } = useAuth();
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset } = useForm();
 
@@ -28,6 +29,7 @@ const SignIn = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
       })
       .catch((err) => setError(err.message));
   };

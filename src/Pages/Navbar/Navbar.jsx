@@ -19,7 +19,7 @@ const Navbar = () => {
   const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
-  const [instructor] = useInstructor();
+  const [isInstructor, refetch] = useInstructor();
 
   const handleSignOut = () => {
     logOut().then(() => {
@@ -77,6 +77,7 @@ const Navbar = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      refetch();
       navigate("/");
     }
   };
@@ -118,7 +119,7 @@ const Navbar = () => {
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>
                 {user && <ActiveLink to="/dashboard">Dashboard</ActiveLink>}
-                {!instructor.email && <PostCamp onClick={openModal} />}
+                {!isInstructor && user && <PostCamp onClick={openModal} />}
               </ul>
 
               <div className="mt-3 space-y-2 md:hidden">
