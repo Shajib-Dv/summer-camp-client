@@ -12,6 +12,7 @@ import PostCamp from "./PostCamp";
 import BecomeInstructor from "../Shared/SocialLogIn/Modal/BecomeInstructor";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useInstructor from "../../hooks/useInstructor";
+import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
   const [isInstructor, refetch] = useInstructor();
+  const [userRole] = useRole();
 
   const handleSignOut = () => {
     logOut().then(() => {
@@ -118,7 +120,9 @@ const Navbar = () => {
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>
                 {user && <ActiveLink to="/dashboard">Dashboard</ActiveLink>}
-                {!isInstructor && user && <PostCamp onClick={openModal} />}
+                {user && userRole === "student" && !isInstructor && (
+                  <PostCamp onClick={openModal} />
+                )}
               </ul>
 
               <div className="mt-3 space-y-2 md:hidden">
