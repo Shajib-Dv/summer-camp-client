@@ -5,9 +5,11 @@ import Heading from "../../../components/Heading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
   const {
     register,
@@ -60,6 +62,7 @@ const AddClass = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                navigate("/dashboard/instructor/my-classes");
               }
             });
           }
@@ -76,7 +79,7 @@ const AddClass = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="px-4 py-6  shadow-2xl rounded-md"
       >
-        <div className="flex flex-col md:flex-row md:gap-10">
+        <div className="flex flex-col items-center md:flex-row md:gap-10">
           <div className="mb-4 w-full">
             <label htmlFor="className" className="block mb-2 font-medium">
               Class Name

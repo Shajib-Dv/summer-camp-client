@@ -51,6 +51,7 @@ const SignUp = () => {
             gender,
             phone,
             address,
+            role: "student",
           };
           const res = await axiosSecure.put("/users", saveUser);
 

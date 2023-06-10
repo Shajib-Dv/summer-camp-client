@@ -73,9 +73,9 @@ const Navbar = () => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: `${user?.displayName} you will be notified soon when the admin approve you as an instructor.`,
+        title: `${user?.displayName} wait for admin approval !`,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1800,
       });
       refetch();
       navigate("/");

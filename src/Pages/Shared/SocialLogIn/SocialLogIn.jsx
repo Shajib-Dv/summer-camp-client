@@ -17,6 +17,7 @@ const SocialLogIn = ({ children }) => {
         name: user?.displayName,
         email: user?.email,
         photo: user?.photoURL,
+        role: "student",
       };
       const res = await axiosSecure.put("/users", saveUser);
       if (res.data) {
