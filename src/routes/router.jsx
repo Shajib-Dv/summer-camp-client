@@ -10,6 +10,9 @@ import Dashboard from "../Layout/Dashboard";
 import InstructorHome from "../Pages/Dashboard/Isntructor/InstructorHome";
 import AddClass from "../Pages/Dashboard/Isntructor/AddClass";
 import MyClasses from "../Pages/Dashboard/Isntructor/MyClasses";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
+import ManageClass from "../Pages/Dashboard/Admin/ManageClass";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +27,14 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
           { path: "/dashboard", element: "" },
+          //admin route
+          {
+            path: "/dashboard/admin/home",
+            element: <AdminHome />,
+          },
+          { path: "/dashboard/admin/manage-class", element: <ManageClass /> },
+          { path: "/dashboard/admin/manage-user", element: <ManageUsers /> },
+          // instructor route
           {
             path: "/dashboard/instructor/home",
             element: <InstructorHome />,

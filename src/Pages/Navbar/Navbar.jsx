@@ -114,7 +114,6 @@ const Navbar = () => {
                 onClick={() => setNavbar(!navbar)}
                 className="md:items-center md:justify-center space-y-4 flex flex-col md:flex-row md:space-x-6 md:space-y-0 text-black font-semibold"
               >
-                {/*TODO: Link goes here */}
                 <ActiveLink to="/">Home</ActiveLink>
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>

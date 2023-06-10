@@ -2,14 +2,14 @@
 
 import { Link } from "react-router-dom";
 
-const EmptyData = ({ message, reason }) => {
+const EmptyData = ({ message, reason, to, go }) => {
   return (
     <div className="modal-box bg-[#8C9333] mx-auto">
       <h3 className="font-bold text-lg">{reason}</h3>
       <p className="py-4">{message}</p>
       <div className="modal-action justify-between">
-        <Link to="/dashboard/instructor/add-class">
-          <button className="btn hover:text-white">Add Class</button>
+        <Link to={to}>
+          <button className="btn hover:text-white">{go}</button>
         </Link>
       </div>
     </div>

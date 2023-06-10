@@ -41,8 +41,10 @@ const MyClasses = () => {
       ) : (
         !isLoading && (
           <EmptyData
+            to={"/dashboard/instructor/add-class"}
             reason={"You haven't any class yet !"}
             message={"Please click to add class button to add your won class"}
+            go={"Add class"}
           />
         )
       )}
