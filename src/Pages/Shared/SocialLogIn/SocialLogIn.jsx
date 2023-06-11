@@ -21,6 +21,7 @@ const SocialLogIn = ({ children }) => {
       };
       const res = await axiosSecure.put("/users", saveUser);
       if (res.data) {
+        console.log("sosal", res.data);
         Swal.fire({
           position: "center",
           icon: "success",

@@ -16,8 +16,10 @@ const useRole = () => {
     queryKey: ["userRole"],
     enabled: !loader,
     queryFn: async () => {
-      const res = await axiosSecure(`/users/${user?.email}`);
-      return res.data?.role;
+      if (user?.email) {
+        const res = await axiosSecure(`/users/${user?.email}`);
+        return res.data?.role;
+      }
     },
   });
   return [userRole, refetch, isLoading];

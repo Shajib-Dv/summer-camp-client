@@ -1,10 +1,15 @@
 /** @format */
 
+import Heading from "../../../components/Heading";
+
 const AdminHome = () => {
   return (
-    <div>
-      <h2>Admin Home</h2>
-    </div>
+    <>
+      <Heading
+        title={"Choose your instructors"}
+        subTitle={"Instructor request"}
+      />
+    </>
   );
 };
 

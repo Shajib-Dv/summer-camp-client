@@ -6,11 +6,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const AddClass = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
+  const [uploading, setUploading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -29,10 +31,10 @@ const AddClass = () => {
       className,
       price,
     } = data;
-    console.log(instructorEmail, instructorName);
     try {
       const imageData = new FormData();
       imageData.append("image", data.classImage[0]);
+      setUploading(true);
 
       fetch(img_host_url, {
         method: "POST",
@@ -45,15 +47,17 @@ const AddClass = () => {
             const saveClasses = {
               instructorEmail,
               instructorName,
-              availableSeats,
+              availableSeats: parseInt(availableSeats),
               className,
-              price,
+              price: parseFloat(price),
               classImage: imgURL,
               status: "pending",
+              date: new Date(),
             };
 
             axiosSecure.post("/classes", saveClasses).then((data) => {
               if (data.data.insertedId) {
+                setUploading(false);
                 reset();
                 Swal.fire({
                   position: "center",
@@ -175,10 +179,15 @@ const AddClass = () => {
           )}
         </div>
         <button
+          disabled={uploading}
           type="submit"
           className="px-4 py-2 w-full btn text-[#8C9333] rounded-md"
         >
-          Add
+          {uploading ? (
+            <span className="loading loading-bars loading-xs text-[#8C9333]"></span>
+          ) : (
+            "Add Class"
+          )}
         </button>
       </form>
     </>

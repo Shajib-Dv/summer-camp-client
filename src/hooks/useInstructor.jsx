@@ -12,8 +12,10 @@ const useInstructor = () => {
     queryKey: ["instructor"],
     enabled: !loader,
     queryFn: async () => {
-      const res = await axiosSecure(`/instructors?email=${user?.email}`);
-      return res.data;
+      if (user?.email) {
+        const res = await axiosSecure(`/instructors?email=${user?.email}`);
+        return res.data;
+      }
     },
   });
   const isInstructor = instructor.email;

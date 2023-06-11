@@ -7,7 +7,7 @@ import UseAllUser from "../../../hooks/UseAllUser";
 import UserTable from "./UserTable";
 
 const ManageUsers = () => {
-  const [users, isLoading] = UseAllUser();
+  const [users, isLoading, refetch] = UseAllUser();
   return (
     <>
       <Heading
@@ -20,7 +20,7 @@ const ManageUsers = () => {
           <table className="table table-xs table-pin-rows table-pin-cols z-0">
             <thead>
               <tr>
-                <th>Image</th>
+                <th className="hidden md:inline-flex">Image</th>
                 <th>Name</th>
                 <th className="hidden md:inline-flex">Email</th>
                 <th>Role</th>
@@ -29,7 +29,9 @@ const ManageUsers = () => {
             </thead>
             <tbody>
               {users &&
-                users?.map((user) => <UserTable key={user._id} user={user} />)}
+                users?.map((user) => (
+                  <UserTable key={user._id} user={user} refetch={refetch} />
+                ))}
             </tbody>
           </table>
         </div>
