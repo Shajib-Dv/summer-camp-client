@@ -12,7 +12,7 @@ const AddedClasses = () => {
   const [userRole] = useRole();
   const approvedClass = allClasses.filter((apr) => apr.status === "approve");
   return (
-    <div className="pt-10">
+    <div className="py-10">
       <Heading title={"Claim Your favorite class"} subTitle={"Hurry up !"} />
 
       {isLoading && <Loader />}
