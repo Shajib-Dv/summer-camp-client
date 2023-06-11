@@ -2,15 +2,23 @@
 
 import { FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { data } from "autoprefixer";
+import { format } from "date-fns";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
-const StudentClassTable = ({ classInfo, refetch }) => {
-  const { _id, classImage, price, className: name } = classInfo;
+const StudentClassTable = ({ classInfo, refetch, readOnly }) => {
   const [axiosSecure] = useAxiosSecure();
   const { setPaymentInfo } = useAuth();
+
+  const {
+    _id,
+    classImage,
+    price,
+    className: name,
+    date,
+    transactionId,
+  } = classInfo;
 
   const handleUnselect = async (id) => {
     Swal.fire({
@@ -51,23 +59,31 @@ const StudentClassTable = ({ classInfo, refetch }) => {
             </div>
           </div>
         </td>
-        <td>{name}</td>
-        <td>{price}</td>
-        <td>
-          <button onClick={() => handleUnselect(_id)} className="btn btn-xs">
-            <FaTrash className="text-red-500" />
-          </button>
-        </td>
-        <td>
-          <Link to="/dashboard/student/payment">
-            <button
-              onClick={() => setPaymentInfo(classInfo)}
-              className="btn btn-xs"
-            >
-              pay
-            </button>
-          </Link>
-        </td>
+        <td>{readOnly ? format(new Date(date), "dd MMMM yyyy") : name}</td>
+        <td>${price}</td>
+        {readOnly && <td>{transactionId}</td>}
+        {!readOnly && (
+          <>
+            <td>
+              <button
+                onClick={() => handleUnselect(_id)}
+                className="btn btn-xs"
+              >
+                <FaTrash className="text-red-500" />
+              </button>
+            </td>
+            <td>
+              <Link to="/dashboard/student/payment">
+                <button
+                  onClick={() => setPaymentInfo(classInfo)}
+                  className="btn btn-xs"
+                >
+                  pay
+                </button>
+              </Link>
+            </td>
+          </>
+        )}
       </tr>
     </>
   );

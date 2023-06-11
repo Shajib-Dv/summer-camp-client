@@ -79,11 +79,12 @@ const CheckOutForm = () => {
       setTransactionId(paymentIntent.id);
 
       const paymentDetail = {
-        id: paymentInfo._id,
+        userId: paymentInfo._id,
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
         classId: paymentInfo?.classId,
+        classImage: paymentInfo.classImage,
         date: new Date(),
       };
 
