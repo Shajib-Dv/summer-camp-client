@@ -8,7 +8,7 @@ import { CgClapperBoard } from "react-icons/cg";
 const StudentList = () => {
   return (
     <>
-      <ActiveDashboard to="/dashboard/student/home">
+      <ActiveDashboard to="/">
         <FaHome /> Home
       </ActiveDashboard>
       <ActiveDashboard to="/dashboard/student/my-classes">

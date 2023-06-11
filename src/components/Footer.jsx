@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p>Copyright © 2023 - All right reserved by Summer-Camp</p>
+          <p>Copyright © 2023 - All right reserved by Hero-Sports</p>
         </div>
       </footer>
     </>

@@ -46,7 +46,6 @@ const SignUp = () => {
           const saveUser = {
             name,
             email,
-            password,
             photo,
             gender,
             phone,

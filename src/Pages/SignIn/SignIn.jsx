@@ -1,6 +1,6 @@
 /** @format */
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import signInLottie from "../../../public/login.json";
 import SocialLogIn from "../Shared/SocialLogIn/SocialLogIn";
@@ -13,8 +13,11 @@ const SignIn = () => {
   const { userSignIn } = useAuth();
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset } = useForm();
+
+  let from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     setError("");
@@ -29,7 +32,7 @@ const SignIn = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(from);
       })
       .catch((err) => setError(err.message));
   };
@@ -85,7 +88,7 @@ const SignIn = () => {
               </div>
             </form>
             <p className="pb-4 text-center">
-              New to summer camp ! Please
+              New to Hero Sports ! Please
               <Link to="/signup" className="link  px-2">
                 Sign up
               </Link>

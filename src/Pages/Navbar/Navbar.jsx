@@ -39,7 +39,9 @@ const Navbar = () => {
   const SignInBtn = () => {
     return (
       <Link to="/signin">
-        <button className="primary-btn font-semibold">Sign in</button>
+        <button className="border-b-2 text-white font-bold px-3 rounded-md">
+          Sign in
+        </button>
       </Link>
     );
   };
@@ -47,7 +49,10 @@ const Navbar = () => {
   //sign Out button
   const SignOutBtn = () => {
     return (
-      <button onClick={handleSignOut} className="primary-btn font-semibold">
+      <button
+        onClick={handleSignOut}
+        className="border-b-2 text-white font-bold px-3 rounded-md"
+      >
         Sign out
       </button>
     );

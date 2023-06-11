@@ -11,6 +11,7 @@ const ClassTable = ({
   deny,
   handleOpenModal,
   handleDeny,
+  refetch,
 }) => {
   const [axiosSecure] = useAxiosSecure();
 
@@ -30,6 +31,7 @@ const ClassTable = ({
     const status = { status: "approve" };
     const res = await axiosSecure.put(`/classes/${id}`, status);
     if (res.data.modifiedCount > 0) {
+      refetch();
       Swal.fire({
         position: "center",
         icon: "success",

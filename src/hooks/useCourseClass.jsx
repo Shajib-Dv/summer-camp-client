@@ -15,8 +15,10 @@ const useCourseClass = () => {
     queryKey: ["class"],
     enabled: !loader,
     queryFn: async () => {
-      const res = await axiosSecure(`/classes?email=${user?.email}`);
-      return res.data;
+      if (user) {
+        const res = await axiosSecure(`/classes?email=${user?.email}`);
+        return res.data;
+      }
     },
   });
   return [classes, refetch, isLoading];

@@ -10,7 +10,7 @@ import Loader from "../components/Loader";
 
 const Dashboard = () => {
   const [userRole, refetch, isLoading] = useRole();
-  console.log(userRole);
+
   return (
     <>
       <div className="drawer lg:drawer-open bg-gradient-to-r to-[#c3f637a1] from-[#f66ef438]">

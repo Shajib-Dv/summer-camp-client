@@ -9,9 +9,11 @@ import FeedbackModal from "../../Shared/SocialLogIn/Modal/FeedbackModal";
 import ClassTable from "../Isntructor/ClassTable";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const ManageClass = () => {
-  const [allClasses, isLoading] = useAllClass();
+  const [allClasses, isLoading, refetch] = useAllClass();
+  const { user } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [denyId, setDenyId] = useState("");
   const [axiosSecure] = useAxiosSecure();
@@ -27,6 +29,7 @@ const ManageClass = () => {
     const status = { status: "denied", feedback: feedback };
     const res = await axiosSecure.put(`/classes/${denyId}`, status);
     if (res.data.modifiedCount > 0) {
+      refetch();
       Swal.fire({
         position: "center",
         icon: "success",
@@ -49,7 +52,10 @@ const ManageClass = () => {
       />
 
       {isLoading && <Loader />}
-      {allClasses && Array.isArray(allClasses) && allClasses.length > 0 ? (
+      {user &&
+      allClasses &&
+      Array.isArray(allClasses) &&
+      allClasses.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table table-xs table-pin-rows table-pin-cols z-0">
             <thead>
@@ -77,6 +83,7 @@ const ManageClass = () => {
                     deny={true}
                     handleOpenModal={handleOpenModal}
                     handleDeny={handleDeny}
+                    refetch={refetch}
                   />
                 ))}
             </tbody>
