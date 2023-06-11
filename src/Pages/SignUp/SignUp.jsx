@@ -224,7 +224,7 @@ const SignUp = () => {
                 <input
                   type="submit"
                   value="Sign up"
-                  className="btn hover:bg-[#8c9333a1] bg-[#8C9333]"
+                  className="btn hover:bg-[#8c9333a1] primary-bg"
                 />
               </div>
             </form>

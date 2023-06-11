@@ -41,7 +41,7 @@ const Banner = () => {
               <div className="flex flex-col justify-center items-center h-full w-full bg-[rgb(0,0,0,0.4)] text-white space-y-4 px-6">
                 <p className="text-3xl font-bold">{item.category}</p>
                 <p className="text-xl font-semibold">{item.description}</p>
-                <button className="btn hover:bg-[#8C9333] bg-[#8c93339e]">
+                <button className="btn hover:primary-bg bg-[#8c93339e]">
                   Register for camp
                 </button>
               </div>

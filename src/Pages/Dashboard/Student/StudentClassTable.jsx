@@ -4,14 +4,13 @@ import { FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { data } from "autoprefixer";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const StudentClassTable = ({ classInfo, refetch }) => {
   const { _id, classImage, price, className: name } = classInfo;
   const [axiosSecure] = useAxiosSecure();
-
-  const handlePayment = (id) => {
-    console.log(id);
-  };
+  const { setPaymentInfo } = useAuth();
 
   const handleUnselect = async (id) => {
     Swal.fire({
@@ -60,9 +59,14 @@ const StudentClassTable = ({ classInfo, refetch }) => {
           </button>
         </td>
         <td>
-          <button onClick={() => handlePayment(_id)} className="btn btn-xs">
-            pay
-          </button>
+          <Link to="/dashboard/student/payment">
+            <button
+              onClick={() => setPaymentInfo(classInfo)}
+              className="btn btn-xs"
+            >
+              pay
+            </button>
+          </Link>
         </td>
       </tr>
     </>

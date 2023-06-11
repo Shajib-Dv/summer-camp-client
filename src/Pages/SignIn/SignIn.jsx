@@ -82,7 +82,7 @@ const SignIn = () => {
                 </label>
               </div>
               <div className="form-control w-full">
-                <button className="btn hover:bg-[#8c9333a1] bg-[#8C9333]">
+                <button className="btn hover:bg-[#8c9333a1] primary-bg">
                   Log in
                 </button>
               </div>

@@ -66,7 +66,7 @@ const ClassCard = ({ classDetails, userRole, refetch }) => {
   };
 
   return (
-    <div className="card w-full bg-[#8C9333] shadow-purple-500 shadow-2xl">
+    <div className="card w-full primary-bg shadow-purple-500 shadow-2xl">
       <figure>
         <img src={classImage} className="md:h-64 object-cover" />
       </figure>

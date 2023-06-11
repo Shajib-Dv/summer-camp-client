@@ -9,3 +9,7 @@
 .add-class-input:focus {
   @apply outline-none border-purple-600 border-b-2;
 }
+
+.primary-bg {
+  @apply bg-[#8C9333];
+}

@@ -18,6 +18,10 @@ export const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
+
+  //payment context
+  const [paymentInfo, setPaymentInfo] = useState({});
+
   const auth = getAuth(app);
   const googleAuth = new GoogleAuthProvider();
 
@@ -75,6 +79,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserProfile,
     loader,
+    paymentInfo,
+    setPaymentInfo,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

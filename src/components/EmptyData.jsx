@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const EmptyData = ({ message, reason, to, go }) => {
   return (
-    <div className="modal-box bg-[#8C9333] mx-auto">
+    <div className="modal-box primary-bg mx-auto">
       <h3 className="font-bold text-lg">{reason}</h3>
       <p className="py-4">{message}</p>
       <div className="modal-action justify-between">

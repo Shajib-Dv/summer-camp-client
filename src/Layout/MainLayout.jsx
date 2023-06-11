@@ -8,7 +8,7 @@ const MainLayout = () => {
   return (
     <>
       <Navbar />
-      <div className="mt-20 min-h-[calc(100vh-550px)]">
+      <div className="mt-24 min-h-[calc(100vh-250px)]">
         <Outlet />
       </div>
       <Footer />
