@@ -4,8 +4,11 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ClassCard = ({ classDetails, userRole, refetch }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
   const { user } = useAuth();
   const [disabled, setDisabled] = useState(false);
@@ -29,20 +32,37 @@ const ClassCard = ({ classDetails, userRole, refetch }) => {
       classImage,
     };
 
-    await axiosSecure
-      .put(`/enrolled/${id}`, enrolledClass)
-      .then(async (data) => {
-        if (data.data) {
-          setDisabled(true);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Complete payment for confirm !",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+    if (user) {
+      await axiosSecure
+        .put(`/enrolled/${id}`, enrolledClass)
+        .then(async (data) => {
+          if (data.data) {
+            setDisabled(true);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Complete payment for confirm !",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    }
+
+    if (!user) {
+      Swal.fire({
+        title: "Please Sign in for enroll class",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#8C9333",
+        cancelButtonColor: "#d336",
+        confirmButtonText: "Sign in",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
         }
       });
+    }
   };
 
   return (
