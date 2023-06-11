@@ -21,10 +21,12 @@ const ManageUsers = () => {
             <thead>
               <tr>
                 <th className="hidden md:inline-flex">Image</th>
-                <th>Name</th>
                 <th className="hidden md:inline-flex">Email</th>
+                <th>Name</th>
                 <th>Role</th>
                 <th>Action</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
