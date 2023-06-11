@@ -7,6 +7,7 @@ import useRole from "../hooks/useRole";
 import StudentList from "../Pages/Dashboard/Student/StudentList";
 import AdminList from "../Pages/Dashboard/Admin/AdminList";
 import Loader from "../components/Loader";
+import { BsBoxArrowRight } from "react-icons/bs";
 
 const Dashboard = () => {
   const [userRole, refetch, isLoading] = useRole();
@@ -19,9 +20,9 @@ const Dashboard = () => {
           <Outlet />
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn primary-bg border-white  shadow-xl drawer-button lg:hidden fixed top-1/2 left-0"
           >
-            Open drawer
+            <BsBoxArrowRight className="text-xl text-white" />
           </label>
         </div>
         <div className="drawer-side  border-r-2 border-[#8C9333] md:pt-10  mt-24 md:m-0 text-black">

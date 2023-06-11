@@ -8,7 +8,7 @@ import StudentClassTable from "./StudentClassTable";
 import Loader from "../../../components/Loader";
 import EmptyData from "../../../components/EmptyData";
 
-const EnrolledClasses = () => {
+const EnrolledClasses = ({ historyOn }) => {
   const [axiosSecure] = useAxiosSecure();
   const { user, loader } = useAuth();
 
@@ -21,9 +21,15 @@ const EnrolledClasses = () => {
     },
   });
 
+  const totalAmount = enrolledClass?.reduce((sum, item) => item.price + sum, 0);
+
   return (
     <>
-      <Heading subTitle={"Enrolled classes"} title={"Your Classes"} />
+      {historyOn ? (
+        ""
+      ) : (
+        <Heading subTitle={"Enrolled classes"} title={"Your Classes"} />
+      )}
 
       {isLoading && <Loader />}
       {enrolledClass &&
@@ -49,6 +55,21 @@ const EnrolledClasses = () => {
                   />
                 ))}
             </tbody>
+            {historyOn && (
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>
+                    Total =
+                    <span className="text-black font-semibold">
+                      ${totalAmount}
+                    </span>
+                  </th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            )}
           </table>
         </div>
       ) : (

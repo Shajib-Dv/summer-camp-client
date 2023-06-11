@@ -82,7 +82,7 @@ const CheckOutForm = () => {
         userId: paymentInfo._id,
         email: user?.email,
         transactionId: paymentIntent.id,
-        price,
+        price: parseFloat(price),
         classId: paymentInfo?.classId,
         classImage: paymentInfo.classImage,
         date: new Date(),
