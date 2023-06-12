@@ -93,6 +93,7 @@ const SignIn = () => {
               </div>
               <div className="form-control w-full">
                 <button
+                  type="submit"
                   disabled={disabled}
                   className="btn hover:bg-[#8c9333a1] primary-bg disabled:opacity-50"
                 >

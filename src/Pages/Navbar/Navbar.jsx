@@ -124,7 +124,11 @@ const Navbar = () => {
                 <ActiveLink to="/">Home</ActiveLink>
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>
-                {user && <ActiveLink to="/dashboard">Dashboard</ActiveLink>}
+                {user && (
+                  <ActiveLink to={`/dashboard/${userRole}/home`}>
+                    Dashboard
+                  </ActiveLink>
+                )}
                 {user && userRole === "student" && !isInstructor && (
                   <PostCamp onClick={openModal} />
                 )}

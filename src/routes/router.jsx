@@ -114,7 +114,7 @@ const router = createBrowserRouter([
 
           //student route
           {
-            path: "/dashboard/student/my-classes",
+            path: "/dashboard/student/home",
             element: (
               <StudentRoute>
                 <MySelectedClass />

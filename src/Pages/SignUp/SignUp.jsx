@@ -14,6 +14,8 @@ import Swal from "sweetalert2";
 const SignUp = () => {
   const [axiosSecure] = useAxiosSecure();
   const { userSignUp, updateUserProfile } = useAuth();
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [showFirstPassword, setShowFirstPassword] = useState(false);
   const [showSecondPassword, setShowSecondPassword] = useState(false);
@@ -28,6 +30,9 @@ const SignUp = () => {
 
   const watchPassword = watch("firstPassword", "");
   const onSubmit = (data) => {
+    setLoading(true);
+    setDisabled(true);
+
     const {
       name,
       email,
@@ -41,6 +46,8 @@ const SignUp = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser?.email);
+        setDisabled(false);
+        setLoading(false);
 
         updateUserProfile(name, photo).then(async () => {
           const saveUser = {
@@ -67,7 +74,11 @@ const SignUp = () => {
           }
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setDisabled(false);
+        setLoading(false);
+      });
   };
 
   return (
@@ -221,11 +232,17 @@ const SignUp = () => {
               </div>
 
               <div className="form-control">
-                <input
+                <button
                   type="submit"
-                  value="Sign up"
-                  className="btn hover:bg-[#8c9333a1] primary-bg"
-                />
+                  disabled={disabled}
+                  className="btn hover:bg-[#8c9333a1] primary-bg disabled:opacity-50"
+                >
+                  {loading ? (
+                    <span className="loading loading-bars loading-xs text-[#8C9333]"></span>
+                  ) : (
+                    "Sign up"
+                  )}
+                </button>
               </div>
             </form>
             <p className="pb-4 text-center">

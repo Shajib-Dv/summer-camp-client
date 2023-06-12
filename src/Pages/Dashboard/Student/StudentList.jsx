@@ -11,7 +11,7 @@ const StudentList = () => {
       <ActiveDashboard to="/">
         <FaHome /> Home
       </ActiveDashboard>
-      <ActiveDashboard to="/dashboard/student/my-classes">
+      <ActiveDashboard to="/dashboard/student/home">
         <SiGoogleclassroom /> My Selected Classes
       </ActiveDashboard>
       <ActiveDashboard to="/dashboard/student/my-enrolled">
