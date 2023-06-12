@@ -87,8 +87,8 @@ const SignUp = () => {
       <Helmet>
         <title>Hero Sports | sign up</title>
       </Helmet>
-      <div className="hero py-10 bg-[#94cf4268] min-h-screen">
-        <div className="hero-content flex-col gap-10 lg:flex-row">
+      <div className="hero md:py-10 bg-[#94cf4268] min-h-screen">
+        <div className="hero-content w-full md:w-1/2 flex-col md:gap-10 lg:flex-row">
           <div className="text-center w-full md:w-1/2 lg:text-left">
             <h1 className="text-5xl pb-6 font-bold">Sign up now!</h1>
             <Lottie animationData={signUpLottie} loop={true} className="w-80" />

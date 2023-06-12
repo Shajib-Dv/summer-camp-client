@@ -30,7 +30,7 @@ const useAxiosSecure = () => {
         ) {
           // logout stopped
           // logOut();
-          navigate("/");
+          // navigate("/");
           console.log("axios error", error);
         }
         return Promise.reject(error);

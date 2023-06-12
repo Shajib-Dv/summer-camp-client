@@ -93,7 +93,7 @@ const Navbar = () => {
     <>
       <nav className="w-full primary-bg md:px-10 fixed top-0 z-10">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-          <div>
+          <div className="h-32">
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               <BrandLogo />
               {user && (
@@ -119,7 +119,7 @@ const Navbar = () => {
             >
               <ul
                 onClick={() => setNavbar(!navbar)}
-                className="md:items-center md:justify-center space-y-4 flex flex-col md:flex-row md:space-x-6 md:space-y-0 text-black font-semibold"
+                className="md:items-center md:justify-center space-y-8 flex flex-col md:flex-row md:space-x-6 md:space-y-0 text-black font-semibold"
               >
                 <ActiveLink to="/">Home</ActiveLink>
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
