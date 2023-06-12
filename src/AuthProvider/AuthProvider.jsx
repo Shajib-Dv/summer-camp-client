@@ -18,6 +18,7 @@ export const AuthContext = createContext({});
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
+  const [feedbackOrId, setFeedbackOrId] = useState("");
 
   //payment context
   const [paymentInfo, setPaymentInfo] = useState({});
@@ -81,6 +82,8 @@ const AuthProvider = ({ children }) => {
     loader,
     paymentInfo,
     setPaymentInfo,
+    feedbackOrId,
+    setFeedbackOrId,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -6,14 +6,16 @@ import Loader from "../../../components/Loader";
 import useCourseClass from "../../../hooks/useCourseClass";
 import ClassTable from "./ClassTable";
 
-const MyClasses = () => {
+const MyClasses = ({ home }) => {
   const [classes, refetch, isLoading] = useCourseClass();
   return (
     <>
-      <Heading
-        title={"Manage your class"}
-        subTitle={"All classes you have added"}
-      />
+      {!home && (
+        <Heading
+          title={"Manage your class"}
+          subTitle={"All classes you have added"}
+        />
+      )}
       {isLoading && <Loader />}
       {classes && Array.isArray(classes) && classes.length > 0 ? (
         <div className="overflow-x-auto">
@@ -26,14 +28,22 @@ const MyClasses = () => {
                 <th className="hidden md:inline-block">Price</th>
                 <th>Enrolled</th>
                 <th>Status</th>
-                <th>Feedback </th>
-                <th>Update </th>
+                {!home && (
+                  <>
+                    <th>Feedback </th>
+                    <th>Update </th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
               {classes &&
                 classes?.map((classDetail) => (
-                  <ClassTable key={classDetail._id} classDetail={classDetail} />
+                  <ClassTable
+                    key={classDetail._id}
+                    classDetail={classDetail}
+                    home={home}
+                  />
                 ))}
             </tbody>
           </table>

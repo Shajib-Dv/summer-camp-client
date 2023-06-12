@@ -20,6 +20,8 @@ import Payment from "../Pages/Dashboard/Student/Payment/Payment";
 import EnrolledClasses from "../Pages/Dashboard/Student/EnrolledClasses";
 import PaymentHistory from "../Pages/Dashboard/Student/PaymentHistory";
 import AllInstructors from "../Pages/AllInstructors/AllInstructors";
+import Feedback from "../Pages/Dashboard/Isntructor/Feedback";
+import UpdateClass from "../Pages/Dashboard/Isntructor/UpdateClass";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,11 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/instructor/my-classes",
             element: <MyClasses />,
+          },
+          { path: "/dashboard/instructor/feedback", element: <Feedback /> },
+          {
+            path: "/dashboard/instructor/update-class",
+            element: <UpdateClass />,
           },
 
           //student route

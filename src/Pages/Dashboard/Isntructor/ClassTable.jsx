@@ -3,6 +3,8 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { MdCommentsDisabled, MdOutlineDownloadDone } from "react-icons/md";
+import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const ClassTable = ({
   classDetail,
@@ -12,8 +14,10 @@ const ClassTable = ({
   handleOpenModal,
   handleDeny,
   refetch,
+  home,
 }) => {
   const [axiosSecure] = useAxiosSecure();
+  const { setFeedbackOrId } = useAuth();
 
   const {
     _id,
@@ -24,6 +28,8 @@ const ClassTable = ({
     status,
     instructorName,
     instructorEmail,
+    feedback,
+    enrolled,
   } = classDetail;
 
   //handle status
@@ -62,22 +68,46 @@ const ClassTable = ({
         <td className="hidden md:inline-block">{name}</td>
         <td>{availableSeats}</td>
         <td className="hidden md:inline-block">{price}</td>
-        <td>{0}</td>
+        <td>{enrolled || 0}</td>
         <td>{status}</td>
-        <td>
-          {admin ? (
-            instructorName
-          ) : (
-            <span className="btn btn-xs">{"Feedback"}</span>
-          )}
-        </td>
-        <td className={`${admin && "hidden md:inline-block"}`}>
-          {admin ? (
-            instructorEmail
-          ) : (
-            <span className="btn btn-xs">{"update"}</span>
-          )}
-        </td>
+        {!home && (
+          <>
+            <td>
+              {admin ? (
+                instructorName
+              ) : (
+                <Link
+                  to={
+                    feedback
+                      ? "/dashboard/instructor/feedback"
+                      : "/dashboard/instructor/my-classes"
+                  }
+                >
+                  <span
+                    onClick={() => setFeedbackOrId(feedback)}
+                    className="btn btn-xs"
+                  >
+                    {"Feedback"}
+                  </span>
+                </Link>
+              )}
+            </td>
+            <td className={`${admin && "hidden md:inline-block"}`}>
+              {admin ? (
+                instructorEmail
+              ) : (
+                <Link to="/dashboard/instructor/update-class">
+                  <span
+                    onClick={() => setFeedbackOrId(_id)}
+                    className="btn btn-xs"
+                  >
+                    {"update"}
+                  </span>
+                </Link>
+              )}
+            </td>
+          </>
+        )}
         {approve && deny && (
           <>
             <td>

@@ -1,9 +1,13 @@
 /** @format */
 
+import Heading from "../../../components/Heading";
+import MyClasses from "./MyClasses";
+
 const InstructorHome = () => {
   return (
     <>
-      <h2>Instructor home</h2>
+      <Heading title={"All classes you have added"} />
+      <MyClasses home={true} />
     </>
   );
 };
