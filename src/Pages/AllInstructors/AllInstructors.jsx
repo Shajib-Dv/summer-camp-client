@@ -8,7 +8,7 @@ import InstructorCard from "./InstructorCard";
 
 const AllInstructors = () => {
   const [instructors, , isLoading] = useAllInstructor(true);
-  console.log(instructors);
+
   return (
     <div className="py-10">
       <Heading

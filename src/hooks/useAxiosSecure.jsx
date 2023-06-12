@@ -25,6 +25,7 @@ const useAxiosSecure = () => {
           (error.response.status === 401 || error.response.status === 403)
         ) {
           //  TODO:
+          console.log("axios error", error);
         }
         return Promise.reject(error);
       }

@@ -22,6 +22,9 @@ import PaymentHistory from "../Pages/Dashboard/Student/PaymentHistory";
 import AllInstructors from "../Pages/AllInstructors/AllInstructors";
 import Feedback from "../Pages/Dashboard/Isntructor/Feedback";
 import UpdateClass from "../Pages/Dashboard/Isntructor/UpdateClass";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import StudentRoute from "./StudentRoute";
 
 const router = createBrowserRouter([
   {
@@ -43,38 +46,104 @@ const router = createBrowserRouter([
         children: [
           { path: "/dashboard", element: "" },
           //admin route
-          { path: "/dashboard/admin/home", element: <AdminHome /> },
-          { path: "/dashboard/admin/manage-class", element: <ManageClass /> },
-          { path: "/dashboard/admin/manage-user", element: <ManageUsers /> },
+          {
+            path: "/dashboard/admin/home",
+            element: (
+              <AdminRoute>
+                <AdminHome />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/dashboard/admin/manage-class",
+            element: (
+              <AdminRoute>
+                <ManageClass />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "/dashboard/admin/manage-user",
+            element: (
+              <AdminRoute>
+                <ManageUsers />
+              </AdminRoute>
+            ),
+          },
           // instructor route
-          { path: "/dashboard/instructor/home", element: <InstructorHome /> },
+          {
+            path: "/dashboard/instructor/home",
+            element: (
+              <InstructorRoute>
+                <InstructorHome />
+              </InstructorRoute>
+            ),
+          },
           {
             path: "/dashboard/instructor/add-class",
-            element: <AddClass />,
+            element: (
+              <InstructorRoute>
+                <AddClass />
+              </InstructorRoute>
+            ),
           },
           {
             path: "/dashboard/instructor/my-classes",
-            element: <MyClasses />,
+            element: (
+              <InstructorRoute>
+                <MyClasses />
+              </InstructorRoute>
+            ),
           },
-          { path: "/dashboard/instructor/feedback", element: <Feedback /> },
+          {
+            path: "/dashboard/instructor/feedback",
+            element: (
+              <InstructorRoute>
+                <Feedback />
+              </InstructorRoute>
+            ),
+          },
           {
             path: "/dashboard/instructor/update-class",
-            element: <UpdateClass />,
+            element: (
+              <InstructorRoute>
+                <UpdateClass />
+              </InstructorRoute>
+            ),
           },
 
           //student route
           {
             path: "/dashboard/student/my-classes",
-            element: <MySelectedClass />,
+            element: (
+              <StudentRoute>
+                <MySelectedClass />
+              </StudentRoute>
+            ),
           },
-          { path: "/dashboard/student/payment", element: <Payment /> },
+          {
+            path: "/dashboard/student/payment",
+            element: (
+              <StudentRoute>
+                <Payment />
+              </StudentRoute>
+            ),
+          },
           {
             path: "/dashboard/student/my-enrolled",
-            element: <EnrolledClasses />,
+            element: (
+              <StudentRoute>
+                <EnrolledClasses />
+              </StudentRoute>
+            ),
           },
           {
             path: "/dashboard/student/my-pay-history",
-            element: <PaymentHistory />,
+            element: (
+              <StudentRoute>
+                <PaymentHistory />
+              </StudentRoute>
+            ),
           },
         ],
       },

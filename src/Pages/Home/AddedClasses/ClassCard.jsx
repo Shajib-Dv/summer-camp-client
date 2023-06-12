@@ -67,9 +67,13 @@ const ClassCard = ({ classDetails, userRole, refetch, isEnrolled }) => {
   };
 
   return (
-    <div className="card w-full primary-bg shadow-purple-500 shadow-2xl">
+    <div
+      className={`card w-full primary-bg shadow-purple-500 shadow-2xl ${
+        availableSeats == 0 && "border-red-600 border-2"
+      }`}
+    >
       <figure>
-        <img src={classImage} className="md:h-64 object-cover" />
+        <img src={classImage} className="md:h-64 w-full object-cover" />
       </figure>
       <div className="card-body">
         <div className="flex items-center justify-between">
@@ -86,7 +90,7 @@ const ClassCard = ({ classDetails, userRole, refetch, isEnrolled }) => {
         </p>
         {isEnrolled && (
           <p className="font-semibold">
-            Enrolled : <span>{enrolled}</span>
+            Enrolled : <span>{enrolled || 0}</span>
           </p>
         )}
         <div className="card-actions justify-end">
