@@ -54,6 +54,7 @@ const AuthProvider = ({ children }) => {
 
   //update profile
   const updateUserProfile = (name, photo) => {
+    setLoader(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -73,17 +74,16 @@ const AuthProvider = ({ children }) => {
             email: loggedUser.email,
           })
           .then((data) => {
-            localStorage.setItem("access-token", data.data.token);
+            localStorage.setItem("hero-access-token", data.data.token);
             setLoader(false);
           });
       } else {
-        localStorage.removeItem("access-token");
+        setLoader(true);
+        localStorage.removeItem("hero-access-token");
       }
     });
 
-    return () => {
-      return unSubscribe();
-    };
+    return () => unSubscribe();
   }, []);
 
   const authInfo = {
