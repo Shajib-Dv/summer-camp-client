@@ -1,5 +1,6 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import EmptyData from "../../../components/EmptyData";
 import Heading from "../../../components/Heading";
 import Loader from "../../../components/Loader";
@@ -10,6 +11,9 @@ const AdminHome = () => {
   const [instructors, refetch, isLoading] = useAllInstructor();
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | admin home</title>
+      </Helmet>
       <Heading
         title={"Choose your instructors"}
         subTitle={"Instructor request"}

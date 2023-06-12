@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import StudentClassTable from "./StudentClassTable";
 import EmptyData from "../../../components/EmptyData";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet-async";
 
 const MySelectedClass = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -26,6 +27,9 @@ const MySelectedClass = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | my selected class</title>
+      </Helmet>
       <Heading
         title={"Complete payment for confirm"}
         subTitle={"Revisit class"}

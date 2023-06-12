@@ -60,7 +60,7 @@ const ClassCard = ({ classDetails, userRole, refetch, isEnrolled }) => {
         confirmButtonText: "Sign in",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login", { state: { from: location } });
+          navigate("/signin", { state: { from: location } });
         }
       });
     }

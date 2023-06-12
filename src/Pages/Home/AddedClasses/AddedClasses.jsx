@@ -1,5 +1,6 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import EmptyData from "../../../components/EmptyData";
 import Heading from "../../../components/Heading";
 import Loader from "../../../components/Loader";
@@ -13,6 +14,10 @@ const AddedClasses = () => {
   const approvedClass = allClasses.filter((apr) => apr.status === "approve");
   return (
     <div className="py-10">
+      <Helmet>
+        <title>Hero Sports | classes</title>
+      </Helmet>
+
       <Heading title={"Claim Your favorite class"} subTitle={"Hurry up !"} />
 
       {isLoading && <Loader />}

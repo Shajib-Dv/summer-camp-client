@@ -10,6 +10,7 @@ import ClassTable from "../Isntructor/ClassTable";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const ManageClass = () => {
   const [allClasses, isLoading, refetch] = useAllClass();
@@ -46,6 +47,9 @@ const ManageClass = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | manage classes</title>
+      </Helmet>
       <Heading
         title={"Approve or Denied Class"}
         subTitle={"Manage all classes"}

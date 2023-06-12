@@ -7,6 +7,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import StudentClassTable from "./StudentClassTable";
 import Loader from "../../../components/Loader";
 import EmptyData from "../../../components/EmptyData";
+import { Helmet } from "react-helmet-async";
 
 const EnrolledClasses = ({ historyOn }) => {
   const [axiosSecure] = useAxiosSecure();
@@ -25,6 +26,9 @@ const EnrolledClasses = ({ historyOn }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | enrolled class</title>
+      </Helmet>
       {historyOn ? (
         ""
       ) : (

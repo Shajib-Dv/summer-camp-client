@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
   const { userSignIn } = useAuth();
@@ -49,6 +50,9 @@ const SignIn = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | sign in</title>
+      </Helmet>
       <div className="hero min-h-screen py-10 bg-[#94cf4268]">
         <div className="hero-content gap-10 flex-col lg:flex-row-reverse">
           <div className="text-center w-full lg:text-left">

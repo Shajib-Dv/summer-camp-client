@@ -10,6 +10,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -83,6 +84,9 @@ const SignUp = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | sign up</title>
+      </Helmet>
       <div className="hero py-10 bg-[#94cf4268] min-h-screen">
         <div className="hero-content flex-col gap-10 lg:flex-row">
           <div className="text-center w-full md:w-1/2 lg:text-left">

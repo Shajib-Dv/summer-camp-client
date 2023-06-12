@@ -1,5 +1,6 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import EmptyData from "../../../components/EmptyData";
 import Heading from "../../../components/Heading";
 import Loader from "../../../components/Loader";
@@ -10,6 +11,9 @@ const ManageUsers = () => {
   const [users, isLoading, refetch] = UseAllUser();
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | manage users</title>
+      </Helmet>
       <Heading
         title={"Make user admin or instructor"}
         subTitle={"Manage all users"}

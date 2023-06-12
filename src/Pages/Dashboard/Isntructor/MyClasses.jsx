@@ -1,5 +1,6 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import EmptyData from "../../../components/EmptyData";
 import Heading from "../../../components/Heading";
 import Loader from "../../../components/Loader";
@@ -10,6 +11,9 @@ const MyClasses = ({ home }) => {
   const [classes, refetch, isLoading] = useCourseClass();
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | my classes</title>
+      </Helmet>
       {!home && (
         <Heading
           title={"Manage your class"}

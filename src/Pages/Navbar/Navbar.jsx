@@ -125,7 +125,9 @@ const Navbar = () => {
                 <ActiveLink to="/instructors">Instructors</ActiveLink>
                 <ActiveLink to="/classes">Classes</ActiveLink>
                 {user && (
-                  <ActiveLink to={`/dashboard/${userRole}/home`}>
+                  <ActiveLink
+                    to={userRole ? `/dashboard/${userRole}/home` : "/dashboard"}
+                  >
                     Dashboard
                   </ActiveLink>
                 )}

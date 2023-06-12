@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -77,6 +78,9 @@ const AddClass = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Hero Sports | add classes</title>
+      </Helmet>
       <Heading title={"Add your class here"} subTitle={"Hurry up !"} />
 
       <form

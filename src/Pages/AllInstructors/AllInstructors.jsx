@@ -1,5 +1,6 @@
 /** @format */
 
+import { Helmet } from "react-helmet-async";
 import EmptyData from "../../components/EmptyData";
 import Heading from "../../components/Heading";
 import Loader from "../../components/Loader";
@@ -11,6 +12,9 @@ const AllInstructors = () => {
 
   return (
     <div className="py-10">
+      <Helmet>
+        <title>Hero Sports | instructors</title>
+      </Helmet>
       <Heading
         title={"Meet up your instructor"}
         subTitle={"Hero instructors"}
