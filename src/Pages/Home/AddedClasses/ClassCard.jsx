@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const ClassCard = ({ classDetails, userRole, refetch }) => {
+const ClassCard = ({ classDetails, userRole, refetch, isEnrolled }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
@@ -21,6 +21,7 @@ const ClassCard = ({ classDetails, userRole, refetch }) => {
     availableSeats,
     instructorName,
     instructorEmail,
+    enrolled,
   } = classDetails;
 
   const handleEnrolled = async (id) => {
@@ -83,6 +84,11 @@ const ClassCard = ({ classDetails, userRole, refetch }) => {
         <p className="font-semibold">
           Available Seats : <span>{availableSeats}</span>
         </p>
+        {isEnrolled && (
+          <p className="font-semibold">
+            Enrolled : <span>{enrolled}</span>
+          </p>
+        )}
         <div className="card-actions justify-end">
           <button
             onClick={() => handleEnrolled(_id)}

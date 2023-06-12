@@ -12,6 +12,8 @@ import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 const SignIn = () => {
   const { userSignIn } = useAuth();
   const [error, setError] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
@@ -21,9 +23,13 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     setError("");
+    setLoading(true);
+    setDisabled(true);
     const { email, password } = data;
     userSignIn(email, password)
       .then(() => {
+        setDisabled(false);
+        setLoading(false);
         reset();
         Swal.fire({
           position: "center",
@@ -34,7 +40,11 @@ const SignIn = () => {
         });
         navigate(from);
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        setError(err.message);
+        setDisabled(false);
+        setLoading(false);
+      });
   };
 
   return (
@@ -82,8 +92,15 @@ const SignIn = () => {
                 </label>
               </div>
               <div className="form-control w-full">
-                <button className="btn hover:bg-[#8c9333a1] primary-bg">
-                  Log in
+                <button
+                  disabled={disabled}
+                  className="btn hover:bg-[#8c9333a1] primary-bg disabled:opacity-50"
+                >
+                  {loading ? (
+                    <span className="loading loading-bars loading-xs text-[#8C9333]"></span>
+                  ) : (
+                    "Sign in"
+                  )}
                 </button>
               </div>
             </form>

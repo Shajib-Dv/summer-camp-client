@@ -31,6 +31,7 @@ const StudentClassTable = ({ classInfo, refetch, readOnly }) => {
       confirmButtonText: "delete",
     }).then(async (result) => {
       if (result.isConfirmed) {
+        console.log(id);
         await axiosSecure.delete(`/enrolled/${id}`).then((data) => {
           if (data.data.deletedCount > 0) {
             refetch();

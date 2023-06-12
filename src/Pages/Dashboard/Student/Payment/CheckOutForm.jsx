@@ -44,7 +44,7 @@ const CheckOutForm = () => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -53,7 +53,6 @@ const CheckOutForm = () => {
       setCardError(error.message);
     } else {
       setCardError("");
-      console.log(paymentMethod);
     }
 
     setProcessing(true);
