@@ -79,7 +79,7 @@ const EnrolledClasses = ({ historyOn }) => {
       ) : (
         !isLoading && (
           <EmptyData
-            to={"/dashboard/student/my-classes"}
+            to={"/dashboard/student/home"}
             go={"Enroll now"}
             reason={"No class enrolled yet !"}
             message={

@@ -14,12 +14,12 @@ const InstructorCard = ({ info, isPopular }) => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title indicator">
-            {name}
-            <span className="indicator-item badge text-white badge-secondary left-0">
+          <div className="relative w-fit">
+            <h2 className="card-title">{name}</h2>
+            <span className=" badge text-white absolute -right-20 -top-2">
               {isPopular ? "popular" : role}
             </span>
-          </h2>
+          </div>
           <p className="font-semibold">Email :{email}</p>
         </div>
       </div>

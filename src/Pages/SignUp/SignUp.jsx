@@ -30,7 +30,7 @@ const SignUp = () => {
   } = useForm();
 
   const watchPassword = watch("firstPassword", "");
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setLoading(true);
     setDisabled(true);
 
@@ -43,27 +43,27 @@ const SignUp = () => {
       phone,
       address,
     } = data;
-    userSignUp(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser?.email);
-        setDisabled(false);
-        setLoading(false);
 
-        updateUserProfile(name, photo).then(async () => {
-          const saveUser = {
-            name,
-            email,
-            photo,
-            gender,
-            phone,
-            address,
-            role: "student",
-          };
-          const res = await axiosSecure.put("/users", saveUser);
+    const saveUser = {
+      name,
+      email,
+      photo,
+      gender,
+      phone,
+      address,
+      role: "student",
+    };
 
-          if (res.data.upsertedId) {
-            reset();
+    const res = await axiosSecure.put("/users", saveUser);
+    if (res.data.upsertedId) {
+      userSignUp(email, password)
+        .then(async (result) => {
+          const loggedUser = result.user;
+          console.log(loggedUser?.email);
+          setDisabled(false);
+          setLoading(false);
+          reset();
+          updateUserProfile(name, photo).then(() => {
             Swal.fire({
               position: "center",
               icon: "success",
@@ -72,14 +72,14 @@ const SignUp = () => {
               timer: 1500,
             });
             navigate("/");
-          }
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          setDisabled(false);
+          setLoading(false);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        setDisabled(false);
-        setLoading(false);
-      });
+    }
   };
 
   return (
